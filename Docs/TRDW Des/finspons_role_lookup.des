@@ -1,0 +1,8 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 ROLE                           CHAR         1    39
+  2 ROLE_DESCR                     CHAR        40    90
+
+Total Record Length: 129 characters.
+
+Row count: 24

@@ -1,0 +1,12 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 LAW_NUMBER                     NUMBER       1    10
+  2 CODE                           CHAR        11     8
+  3 LAW16                          CHAR        19    16
+  4 LAW30                          CHAR        35    50
+  5 PARENT_CODE                    CHAR        85    16
+  6 CUSIP                          CHAR       101     6
+
+Total Record Length: 106 characters.
+
+Row count: 11756

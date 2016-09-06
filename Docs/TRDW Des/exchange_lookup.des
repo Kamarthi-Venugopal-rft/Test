@@ -1,0 +1,10 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CODE                           CHAR         1     2
+  2 LONG_CODE                      CHAR         3     5
+  3 EXCHANGE                       CHAR         8    10
+  4 NATION                         CHAR        18     2
+
+Total Record Length: 19 characters.
+
+Row count: 418

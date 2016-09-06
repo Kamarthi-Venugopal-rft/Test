@@ -1,0 +1,13 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CODE                           CHAR         1     4
+  2 VALIDATION                     CHAR         5     4
+  3 SICDESC                        CHAR         9    60
+  4 MAINDUSTRYCODE                 CHAR        69     2
+  5 NIINDUSTRYCODE                 CHAR        71     2
+  6 MAINDUSTRYGROUP                CHAR        73     1
+  7 NIINDUSTRYGROUP                CHAR        74     1
+
+Total Record Length: 74 characters.
+
+Row count: 1022

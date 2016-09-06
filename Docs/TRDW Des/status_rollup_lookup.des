@@ -1,0 +1,9 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 STATUS                         CHAR         1     2
+  2 STATUS_LONG                    CHAR         3    30
+  3 CHILD_SUBLIST_ID               NUMBER      33    10
+
+Total Record Length: 42 characters.
+
+Row count: 5

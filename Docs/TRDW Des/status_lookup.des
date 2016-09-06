@@ -1,0 +1,9 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CODE                           CHAR         1     2
+  2 DESCR                          CHAR         3    14
+  3 NEWS_DESCR                     CHAR        17     9
+
+Total Record Length: 25 characters.
+
+Row count: 14

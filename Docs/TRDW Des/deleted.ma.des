@@ -1,0 +1,8 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 (LOG_NUM*1000)+20              NUMBER       1    10
+  2 TO_CHAR(DELETE_STAMP,'YYYYMMDD CHAR        11     8
+
+Total Record Length: 18 characters.
+
+Row count: 1

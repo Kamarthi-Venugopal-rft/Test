@@ -1,0 +1,8 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CODE                           CHAR         1     2
+  2 SIGIND                         CHAR         3    25
+
+Total Record Length: 27 characters.
+
+Row count: 46

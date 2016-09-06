@@ -1,0 +1,8 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 TF_MID_CODE                    CHAR         1    10
+  2 TF_MID_DESC                    CHAR        11    50
+
+Total Record Length: 60 characters.
+
+Row count: 94

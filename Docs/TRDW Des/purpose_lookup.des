@@ -1,0 +1,8 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CODE                           CHAR         1     1
+  2 DESCRIPTION                    CHAR         2    40
+
+Total Record Length: 41 characters.
+
+Row count: 16

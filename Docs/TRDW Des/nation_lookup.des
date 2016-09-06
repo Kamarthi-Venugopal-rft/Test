@@ -1,0 +1,15 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CODE                           CHAR         1     2
+  2 NATION                         CHAR         3    14
+  3 NATION_LONG                    CHAR        17    40
+  4 CURRENCY                       CHAR        57     3
+  5 REGION                         CHAR        60     2
+  6 REGION_LONG                    CHAR        62    30
+  7 SA_REGION                      CHAR        92     2
+  8 SA_REGION_LONG                 CHAR        94    30
+  9 AUTEX_NATION                   CHAR       124     2
+
+Total Record Length: 125 characters.
+
+Row count: 242

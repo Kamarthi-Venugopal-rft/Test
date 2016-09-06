@@ -1,0 +1,8 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 TF_MACRO_CODE                  CHAR         1    10
+  2 TF_MACRO_DESC                  CHAR        11    40
+
+Total Record Length: 50 characters.
+
+Row count: 13

@@ -1,0 +1,9 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CODE                           CHAR         1     9
+  2 MENU_CODE                      NUMBER      10    10
+  3 DESCR                          CHAR        20    20
+
+Total Record Length: 39 characters.
+
+Row count: 325

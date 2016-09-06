@@ -1,0 +1,16 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CODE                           NUMBER       1    10
+  2 MGRNO                          NUMBER      11    10
+  3 MANAGER_CODE                   CHAR        21    16
+  4 MANAGER_LONG                   CHAR        37    30
+  5 MANAGER_LONG2                  CHAR        67    55
+  6 CUSIP                          CHAR       122     6
+  7 NATION                         CHAR       128     2
+  8 STATE                          CHAR       130     2
+  9 PARENT                         CHAR       132    16
+ 10 COML                           CHAR       148     1
+
+Total Record Length: 148 characters.
+
+Row count: 35375

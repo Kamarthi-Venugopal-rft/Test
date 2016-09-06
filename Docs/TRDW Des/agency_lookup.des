@@ -1,0 +1,8 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CODE                           CHAR         1     4
+  2 AGENCY                         CHAR         5    32
+
+Total Record Length: 36 characters.
+
+Row count: 1011

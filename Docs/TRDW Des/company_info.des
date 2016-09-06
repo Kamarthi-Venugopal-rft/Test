@@ -1,0 +1,35 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CIDGEN                         NUMBER       1    10
+  2 CUSIP                          CHAR        11    24
+  3 CUSIPE                         CHAR        35     4
+  4 DUNS                           CHAR        39    44
+  5 EXCH                           CHAR        83     8
+  6 NATION                         CHAR        91     8
+  7 PUB                            CHAR        99     4
+  8 SICP                           CHAR       103    16
+  9 STATE                          CHAR       119     8
+ 10 STATE1                         CHAR       127     8
+ 11 TICKER                         CHAR       135    24
+ 12 ZIP                            CHAR       159    40
+ 13 UP                             CHAR       199    24
+ 14 UPCIDGEN                       NUMBER     223    10
+ 15 CINITS                         CHAR       233    44
+ 16 FOUNDED                        DATE       277     8
+ 17 GENDATE                        DATE       285     8
+ 18 DIVISION                       CHAR       293     4
+ 19 VEICP                          CHAR       297    16
+ 20 CURR_CUSIP                     CHAR       313    24
+ 21 CURR_TICKER                    CHAR       337    24
+ 22 CURR_EXCH                      CHAR       361     8
+ 23 TCIM                           NUMBER     369    10
+ 24 UPDATE_STAMP                   DATE       379     8
+ 25 PUB_MID                        CHAR       387     4
+ 26 COUNTRY_OF_INCORP              CHAR       391     8
+ 27 TKO_UPDATE_STAMP               NUMBER     399    10
+ 28 CREATE_STAMP                   DATE       409     8
+ 29 PERMID                         CHAR       417    40
+
+Total Record Length: 456 characters.
+
+Row count: 1083

@@ -1,0 +1,8 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CODE                           CHAR         1     4
+  2 CURRENCYLONG                   CHAR         5    20
+
+Total Record Length: 24 characters.
+
+Row count: 212

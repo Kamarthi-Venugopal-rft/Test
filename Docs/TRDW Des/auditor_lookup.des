@@ -1,0 +1,11 @@
+ #  Column Name                      Type   Start  Len  
+--- ------------------------------ -------- ----- ----- 
+  1 CODE                           CHAR         1     8
+  2 AUDITOR                        CHAR         9    16
+  3 AUDITORLONG                    CHAR        25    30
+  4 PARENT_CODE                    CHAR        55    16
+  5 CUSIP                          CHAR        71     6
+
+Total Record Length: 76 characters.
+
+Row count: 6041
