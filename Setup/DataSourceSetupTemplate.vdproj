@@ -45,7 +45,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_49FCD5E4375E4F8D996781F5F331E8C4"
+        "MsmKey" = "8:_482AFA930EE24E4E8D7FC8669493C196"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -256,7 +256,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:2.0.50727   "
+                "FrameworkVersion" = "8:2.0.50727    "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=9832"
                 }
@@ -364,7 +364,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_49FCD5E4375E4F8D996781F5F331E8C4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_482AFA930EE24E4E8D7FC8669493C196"
             {
             "SourcePath" = "8:..\\DBScripts\\8_Deal_Update_SP.sql"
             "TargetName" = "8:8_Deal_Update_SP.sql"
@@ -694,9 +694,9 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DIS-Deals 5.4"
-        "ProductCode" = "8:{85F66FC3-7491-460C-8DDA-960276650CEA}"
+        "ProductCode" = "8:{7DD5C844-7C45-45F9-8BFB-BB057386F09E}"
         "PackageCode" = "8:{6A3EFF99-C8E2-4933-83CB-0F6ABB4AB0A3}"
-        "UpgradeCode" = "8:{4DD82D36-9E20-4511-A12C-87A0CE366CEF}"
+        "UpgradeCode" = "8:{F5D5CDC4-F7BC-4E50-BE26-AB9FF1A6095A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
