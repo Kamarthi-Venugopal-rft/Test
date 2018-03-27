@@ -45,13 +45,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_535F9B46093F451294B2A514BAE8D83C"
+        "MsmKey" = "8:_482AFA930EE24E4E8D7FC8669493C196"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6DE3408B31EB48F0892A0CA29496A7B2"
+        "MsmKey" = "8:_535F9B46093F451294B2A514BAE8D83C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -69,13 +69,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A5F3C0CB7940458298DFE6B8B3B66A0E"
+        "MsmKey" = "8:_B26B18A2CB9945248819467FF6157E28"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B26B18A2CB9945248819467FF6157E28"
+        "MsmKey" = "8:_C2B34D74A76E4E568C928DDB195CDFAA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -106,7 +106,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6DE3408B31EB48F0892A0CA29496A7B2"
+        "OwnerKey" = "8:_C2B34D74A76E4E568C928DDB195CDFAA"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -171,73 +171,73 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_0F48A1769771412FA62446553FF64CB8"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_450E8DE603BF452EBA58E12D3EA13271"
             {
             "Name" = "8:Uninstall"
             "Condition" = "8:"
-            "Object" = "8:_6DE3408B31EB48F0892A0CA29496A7B2"
+            "Object" = "8:_C2B34D74A76E4E568C928DDB195CDFAA"
             "FileType" = "3:2"
             "InstallAction" = "3:4"
             "Arguments" = "8:\"[DIS_INSTALL_PATH]\\Bin\\Ingestion.SharedSettings.config\" \"[TARGETDIR]\\\" \"[TARGETDIR]\\MetaDbScripts\" DealUnInstall.sql"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_C645FF26_1DCC_4C41_9950_0ED298F8FFE5"
+            "Identifier" = "8:_D16603B4_770D_4210_8BC0_6AF05A5CD8A2"
             "InstallerClass" = "11:FALSE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_6A6F595AF1AE418CA9E763531D9C7474"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_4735B25039D24FA4BC14BB3E0D142F03"
             {
-            "Name" = "8:Views"
+            "Name" = "8:View"
             "Condition" = "8:"
-            "Object" = "8:_6DE3408B31EB48F0892A0CA29496A7B2"
+            "Object" = "8:_C2B34D74A76E4E568C928DDB195CDFAA"
             "FileType" = "3:2"
             "InstallAction" = "3:2"
             "Arguments" = "8:\"[DIS_INSTALL_PATH]\\Bin\\Ingestion.SharedSettings.config\" \"[TARGETDIR]\\\" \"[TARGETDIR]\\DbScripts\" \"9_Deal_Change_Views.sql\""
             "EntryPoint" = "8:"
             "Sequence" = "3:2"
-            "Identifier" = "8:_AB3E93C4_44DE_45D9_A09E_01B121472838"
+            "Identifier" = "8:_59835FE0_317E_4D25_B6E9_A557740F3C1D"
             "InstallerClass" = "11:FALSE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_9F1C1BE3293F4240B78B531398926442"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_80090B84C1594A4EB996E8E2873F110A"
             {
-            "Name" = "8:Uninstall"
+            "Name" = "8:StoredProcedure"
             "Condition" = "8:"
-            "Object" = "8:_6DE3408B31EB48F0892A0CA29496A7B2"
-            "FileType" = "3:2"
-            "InstallAction" = "3:1"
-            "Arguments" = "8:\"[DIS_INSTALL_PATH]\\Bin\\Ingestion.SharedSettings.config\" \"[TARGETDIR]\\\" \"[TARGETDIR]\\MetaDbScripts\" DealUnInstall.sql"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_9301C8CA_F16F_49FD_92BA_CE48C79F65D3"
-            "InstallerClass" = "11:FALSE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_C1E1B76E6ADF41F8AF55E617CEBA6950"
-            {
-            "Name" = "8:StoredProc"
-            "Condition" = "8:"
-            "Object" = "8:_6DE3408B31EB48F0892A0CA29496A7B2"
+            "Object" = "8:_C2B34D74A76E4E568C928DDB195CDFAA"
             "FileType" = "3:2"
             "InstallAction" = "3:2"
             "Arguments" = "8:\"[DIS_INSTALL_PATH]\\Bin\\Ingestion.SharedSettings.config\" \"[TARGETDIR]\\\" \"[TARGETDIR]\\DbScripts\" \"8_Deal_Update_SP.sql\""
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_205F12EF_115C_4E71_B0E2_BACB6C1D5ACD"
+            "Identifier" = "8:_2B3B51B4_8950_43E0_893C_902262486470"
             "InstallerClass" = "11:FALSE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_E80DE1344C8A4428BB77842ED6F49EA4"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_85BF220EF8B342108ED5EA3E58CAFD45"
+            {
+            "Name" = "8:Uninstall"
+            "Condition" = "8:"
+            "Object" = "8:_C2B34D74A76E4E568C928DDB195CDFAA"
+            "FileType" = "3:2"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:\"[DIS_INSTALL_PATH]\\Bin\\Ingestion.SharedSettings.config\" \"[TARGETDIR]\\\" \"[TARGETDIR]\\MetaDbScripts\" DealUnInstall.sql"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_022500D8_B9E0_46FA_BE9E_146C9CE59AAA"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_DF643ECFECC74EE5B67CB7F820220AC3"
             {
             "Name" = "8:Install"
             "Condition" = "8:"
-            "Object" = "8:_6DE3408B31EB48F0892A0CA29496A7B2"
+            "Object" = "8:_C2B34D74A76E4E568C928DDB195CDFAA"
             "FileType" = "3:2"
             "InstallAction" = "3:1"
             "Arguments" = "8:\"[DIS_INSTALL_PATH]\\Bin\\Ingestion.SharedSettings.config\" \"[TARGETDIR]\\\" \"[TARGETDIR]\\MetaDbScripts\" DealInstall.sql"
             "EntryPoint" = "8:"
             "Sequence" = "3:2"
-            "Identifier" = "8:_7F88EAA4_8D57_48C6_A1DD_9DC06ED2CF8A"
+            "Identifier" = "8:_0D498ABB_65AC_49EA_9AA0_A7E4D5C85197"
             "InstallerClass" = "11:FALSE"
             "CustomActionData" = "8:"
             }
@@ -256,7 +256,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:2.0.50727  "
+                "FrameworkVersion" = "8:2.0.50727    "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=9832"
                 }
@@ -364,10 +364,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_535F9B46093F451294B2A514BAE8D83C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_482AFA930EE24E4E8D7FC8669493C196"
             {
-            "SourcePath" = "8:..\\DBScripts\\5_Deal_Change_script.sql"
-            "TargetName" = "8:5_Deal_Change_script.sql"
+            "SourcePath" = "8:..\\DBScripts\\8_Deal_Update_SP.sql"
+            "TargetName" = "8:8_Deal_Update_SP.sql"
             "Tag" = "8:"
             "Folder" = "8:_B73761C8F0F34497AFB065817F8306BF"
             "Condition" = "8:"
@@ -384,23 +384,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6DE3408B31EB48F0892A0CA29496A7B2"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_535F9B46093F451294B2A514BAE8D83C"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ExecuteSqlScript, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_6DE3408B31EB48F0892A0CA29496A7B2"
-                    {
-                    "Name" = "8:ExecuteSqlScript.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:E:\\ExecuteSqlScript\\Versions\\Version 2\\ExecuteSqlScript.exe"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\DBScripts\\5_Deal_Change_script.sql"
+            "TargetName" = "8:5_Deal_Change_script.sql"
             "Tag" = "8:"
-            "Folder" = "8:_5980133D656048F4BE03A38D9CD0B7C9"
+            "Folder" = "8:_B73761C8F0F34497AFB065817F8306BF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -455,10 +444,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A5F3C0CB7940458298DFE6B8B3B66A0E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B26B18A2CB9945248819467FF6157E28"
             {
-            "SourcePath" = "8:..\\DBScripts\\8_Deal_Update_SP.sql"
-            "TargetName" = "8:8_Deal_Update_SP.sql"
+            "SourcePath" = "8:..\\DBScripts\\4_Deal_script.sql"
+            "TargetName" = "8:4_Deal_script.sql"
             "Tag" = "8:"
             "Folder" = "8:_B73761C8F0F34497AFB065817F8306BF"
             "Condition" = "8:"
@@ -475,12 +464,23 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B26B18A2CB9945248819467FF6157E28"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C2B34D74A76E4E568C928DDB195CDFAA"
             {
-            "SourcePath" = "8:..\\DBScripts\\4_Deal_script.sql"
-            "TargetName" = "8:4_Deal_script.sql"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:ExecuteSqlScript, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C2B34D74A76E4E568C928DDB195CDFAA"
+                    {
+                    "Name" = "8:ExecuteSqlScript.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Tool\\ExecuteSqlScript.exe"
+            "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_B73761C8F0F34497AFB065817F8306BF"
+            "Folder" = "8:_5980133D656048F4BE03A38D9CD0B7C9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -693,16 +693,16 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:DIS-Deals 5.3"
-        "ProductCode" = "8:{CB4C1DD4-ADCC-4403-9036-EA036014AFB1}"
-        "PackageCode" = "8:{8491CABE-A112-4E89-97E5-9E37F2C5C0FE}"
-        "UpgradeCode" = "8:{79688AAB-1DC6-476F-9C68-419691E684DF}"
+        "ProductName" = "8:DIS-Deals 5.4"
+        "ProductCode" = "8:{7DD5C844-7C45-45F9-8BFB-BB057386F09E}"
+        "PackageCode" = "8:{6A3EFF99-C8E2-4933-83CB-0F6ABB4AB0A3}"
+        "UpgradeCode" = "8:{F5D5CDC4-F7BC-4E50-BE26-AB9FF1A6095A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:5.3"
+        "ProductVersion" = "8:5.4"
         "Manufacturer" = "8:Thomson Reuters"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
