@@ -77,7 +77,7 @@ INSERT INTO [CatalogFiles]([CatalogId], [IsIncluded], [SourceFileName], [ZipToFi
 
 /*		ConnectionInfo     */
 INSERT INTO ConnectionInfo (Description, [Server], Port, [Login], [password], ServerPath)
-SELECT 'Connection Information for Deal', 'ftp2.thomsonib.com', '21', 'trdw', 'feed123', '/'
+SELECT 'Connection Information for Deal', 'ftp.sdcdeals.refinitiv.com', '21', 'trdw', 'feed123', '/'
 
 SET @ConnectionDeal = SCOPE_IDENTITY()
 
