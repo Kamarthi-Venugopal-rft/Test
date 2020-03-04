@@ -971,6 +971,21 @@ INSERT INTO [ProfileViewMapping]([DataDeliveryProfileId], [DataDeliveryViewId], 
 
 INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
      VALUES(@DDViewID,'FinAdvId')
+     
+     
+INSERT INTO [DataDeliveryView]([DataSourceId], [DatabaseId], [Description], [DatabaseViewName], [MQACode], [TargetTableName]) 
+	VALUES(@Deal_DataSource_ID, @DataBaseInfoId, 'View for DLOAPerminfo', 'V_DLOAPermInfo', 13739, 'DLOAPermInfo');
+
+SET @DDViewID = SCOPE_IDENTITY()
+
+INSERT INTO [ProfileViewMapping]([DataDeliveryProfileId], [DataDeliveryViewId], [ApplyOrder]) 
+	VALUES(@DataDeliveryProfileId, @DDViewID , 21);
+
+INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
+     VALUES(@DDViewID,'TRANSACTIONID')
+
+INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
+     VALUES(@DDViewID,'SEQ_NO')
 
 
 --INSERT INTO [DataDeliveryView]([DataSourceId], [DatabaseId], [Description], [DatabaseViewName], [MQACode], [TargetTableName]) 
