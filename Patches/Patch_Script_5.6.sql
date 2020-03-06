@@ -29,7 +29,7 @@ CREATE TABLE [dbo].[DLOAPermInfo](
 	[SELLUPPermID] [bigint] NULL,
 	[SIPPermID] [bigint] NULL,
 	[SELLPermID] [bigint] NULL,
-	[Licflag] [int] NULL,
+	[Licflag] [int] NOT NULL,
  CONSTRAINT [pk_DLOAPermInfo] PRIMARY KEY NONCLUSTERED 
 (
 	[TransactionID] ASC,
