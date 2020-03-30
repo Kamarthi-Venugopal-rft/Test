@@ -8,14 +8,18 @@ SET NOCOUNT ON
 --feed
 DECLARE @Deal_Qtrly_FeedID VARCHAR(64)
 DECLARE @Deal_Daily_FeedID VARCHAR(64)
+DECLARE @Deal_Equity_FeedID VARCHAR(64)
 SET @Deal_Qtrly_FeedID = 'Deal_Qtrly'
-SET @Deal_Daily_FeedID = 'Deal_Daily'	
+SET @Deal_Daily_FeedID = 'Deal_Daily'
+SET	@Deal_Equity_FeedID = 'Deal_Equity_Daily'
 
 --schedule
 DECLARE @Deal_Qtrly_Schedule_ID VARCHAR(64)
 DECLARE @Deal_Daily_Schedule_ID VARCHAR(64)
+DECLARE @Deal_Equity_Schedule_ID VARCHAR(64)
 SET @Deal_Qtrly_Schedule_ID = 'Sch_Deal_Qtrly'
 SET @Deal_Daily_Schedule_ID = 'Sch_Deal_Daily'
+SET @Deal_Equity_Schedule_ID = 'Sch_Deal_Equity'
 
 -- Databases
 DECLARE @Master_DB_Name VARCHAR(32)
@@ -34,6 +38,7 @@ SET @Deal_DataSource_ID = 'Deal'
 --catalog
 DECLARE @Catalog_Deal_Qtrly INT
 DECLARE @Catalog_Deal_Daily INT
+DECLARE @Catalog_Deal_Equity INT
 
 --Connection
 DECLARE @ConnectionDeal INT
@@ -41,10 +46,12 @@ DECLARE @ConnectionDeal INT
 -- source
 DECLARE @Source_Deal_Qtrly INT
 DECLARE @Source_Deal_Daily INT
+DECLARE @Source_Deal_Equity INT
 
 --SourceGroup
 DECLARE @SourceGroup_Deal_Qtrly INT
 DECLARE @SourceGroup_Deal_Daily INT
+DECLARE @SourceGroup_Deal_Equity INT
 
 --DataSource
 IF NOT EXISTS (SELECT [Id] FROM [dbo].[DataSources] WHERE [Id] = @Deal_DataSource_ID)
@@ -74,6 +81,17 @@ SET @Catalog_Deal_Daily = scope_identity()
 
 INSERT INTO [CatalogFiles]([CatalogId], [IsIncluded], [SourceFileName], [ZipToFileName], [SinkFileName], [MinSize], [MaxSize], [MiscData], TypeOfCheck) 
 	VALUES(@Catalog_Deal_Daily, 3, 'MA_TRDW_(yyyymmdd).zip', 'MA_TRDW_(yyyymmdd).zip', NULL, NULL, NULL, NULL, NULL);
+	
+-- Equity
+/*   CataLogs */
+INSERT INTO [Catalogs]( [Description]) 
+	VALUES('Catalogs for Deal_Equity_Daily');
+
+/*       Catalog Files        */
+SET @Catalog_Deal_Equity = scope_identity()
+---MA_TRDW_20200321
+INSERT INTO [CatalogFiles]([CatalogId], [IsIncluded], [SourceFileName], [ZipToFileName], [SinkFileName], [MinSize], [MaxSize], [MiscData], TypeOfCheck) 
+	VALUES(@Catalog_Deal_Equity, 3, 'MA_TRDW_(yyyymmdd).zip', 'MA_TRDW_(yyyymmdd).zip', NULL, NULL, NULL, NULL, NULL);
 
 /*		ConnectionInfo     */
 INSERT INTO ConnectionInfo (Description, [Server], Port, [Login], [password], ServerPath)
@@ -82,15 +100,24 @@ SELECT 'Connection Information for Deal', 'ftp.sdcdeals.refinitiv.com', '21', 't
 SET @ConnectionDeal = SCOPE_IDENTITY()
 
 /*      Sources         */
+
+---Qtrly----
 INSERT INTO [Sources]([ConnectionId], [CatalogId], [Description]) 
 	VALUES(@ConnectionDeal, @Catalog_Deal_Qtrly, 'Quarterly Source for Deal');
 
 SET @Source_Deal_Qtrly = SCOPE_IDENTITY()
 
+---Daily---
 INSERT INTO [Sources]([ConnectionId], [CatalogId], [Description]) 
 	VALUES(@ConnectionDeal, @Catalog_Deal_Daily, 'Daily Source for Deal');
 
 SET @Source_Deal_Daily = SCOPE_IDENTITY()
+
+---Equity---
+INSERT INTO [Sources]([ConnectionId], [CatalogId], [Description]) 
+	VALUES(@ConnectionDeal, @Catalog_Deal_Equity,'Daily Source for Deal Equity');
+
+SET @Source_Deal_Equity = SCOPE_IDENTITY()
 
 /*		Source Groups Qtrly   */
 INSERT INTO [SourceGroups]([Desciption]) 
@@ -111,15 +138,32 @@ SET @SourceGroup_Deal_Daily = SCOPE_IDENTITY()
 
 INSERT INTO [SourceGroupsMapping](SourceGroupId,[SourceId], [Priority_Order]) 
 	VALUES(@SourceGroup_Deal_Daily, @Source_Deal_Daily, 1);
+	
+	/*		Source Groups Equity   */
+INSERT INTO [SourceGroups]([Desciption]) 
+	VALUES('Equity Deal SourceGroup');
+
+/*		SourceGroup Mapping Equity	 */
+SET @SourceGroup_Deal_Equity = SCOPE_IDENTITY()
+
+INSERT INTO [SourceGroupsMapping](SourceGroupId,[SourceId], [Priority_Order]) 
+	VALUES(@SourceGroup_Deal_Equity, @Source_Deal_Equity, 1);
 
 
 /*		Schedules		*/
 -- Daily
 IF NOT EXISTS (SELECT [Id] FROM [dbo].[Schedules] WHERE [Id] = @Deal_Daily_Schedule_ID)
 	INSERT INTO [Schedules]([Id], [Description])
-		VALUES(@Deal_Daily_Schedule_ID, 'Deal Daily Scheduling')--,1, '<AdvanceScheduleConfig><SeedDateTime>2008-06-30T10:00:00</SeedDateTime><RepeatInterval Year="0" Month="0" Day="0" Hour="0" Minute="2" Second="0" /><SkipHolidays>true</SkipHolidays></AdvanceScheduleConfig>');
+		VALUES(@Deal_Daily_Schedule_ID, 'Deal Daily Scheduling')
 ELSE
      UPDATE [dbo].[Schedules] SET [Description] = 'Deal Daily Scheduling' WHERE [Id] = @Deal_Daily_Schedule_ID
+     
+-- Equity
+IF NOT EXISTS (SELECT [Id] FROM [dbo].[Schedules] WHERE [Id] = @Deal_Equity_Schedule_ID)
+	INSERT INTO [Schedules]([Id], [Description])
+		VALUES(@Deal_Equity_Schedule_ID, 'Deal Equity Scheduling')
+ELSE
+     UPDATE [dbo].[Schedules] SET [Description] = 'Deal Equity Scheduling' WHERE [Id] = @Deal_Equity_Schedule_ID
 
 -- Quarterly
 IF NOT EXISTS (SELECT [Id] FROM [dbo].[Schedules] WHERE [Id] = @Deal_Qtrly_Schedule_ID)
@@ -148,6 +192,23 @@ INSERT INTO [ScheduleDetails]([ScheduleId], [BuildNumber], [DataDayOfWeek], [Nex
 
 --INSERT INTO [ScheduleDetails]([ScheduleId], [BuildNumber], [DataDayOfWeek], [NextDataDayOffset], [DayToRunOffset], [StartTime], [InSchedule]) 
 --	VALUES(@Deal_Qtrly_Schedule_ID, 0, 'Monday', 7, 0, '2009-08-01 12:00:00', 1) -- Added buffer of 5 hrs.(Manual Upload)
+
+
+/*	ScheduleDetails	*/
+INSERT INTO [ScheduleDetails]([ScheduleId], [BuildNumber], [DataDayOfWeek], [NextDataDayOffset], [DayToRunOffset], [StartTime], [InSchedule]) 
+	VALUES(@Deal_Equity_Schedule_ID, 0, 'Tuesday', 1, 0, '2009-08-01 11:00:00', 1)
+
+INSERT INTO [ScheduleDetails]([ScheduleId], [BuildNumber], [DataDayOfWeek], [NextDataDayOffset], [DayToRunOffset], [StartTime], [InSchedule]) 
+	VALUES(@Deal_Equity_Schedule_ID, 0, 'Wednesday', 1, 0, '2009-08-01 11:00:00', 1)
+
+INSERT INTO [ScheduleDetails]([ScheduleId], [BuildNumber], [DataDayOfWeek], [NextDataDayOffset], [DayToRunOffset], [StartTime], [InSchedule]) 
+	VALUES(@Deal_Equity_Schedule_ID, 0, 'Thursday', 1, 0, '2009-08-01 11:00:00', 1)
+
+INSERT INTO [ScheduleDetails]([ScheduleId], [BuildNumber], [DataDayOfWeek], [NextDataDayOffset], [DayToRunOffset], [StartTime], [InSchedule]) 
+	VALUES(@Deal_Equity_Schedule_ID, 0, 'Friday', 1, 0, '2009-08-01 11:00:00', 1)
+
+INSERT INTO [ScheduleDetails]([ScheduleId], [BuildNumber], [DataDayOfWeek], [NextDataDayOffset], [DayToRunOffset], [StartTime], [InSchedule]) 
+	VALUES(@Deal_Equity_Schedule_ID, 0, 'Saturday', 3, 0, '2009-08-01 11:00:00', 1)
 
 
 --Data Feeds Qtrly
@@ -240,6 +301,51 @@ ELSE
 --				,[Data] = '<Data><MinimizeLogs>true</MinimizeLogs></Data>'
 		WHERE	[Id] = @Deal_Daily_FeedID
 
+--Data Feeds Equity
+IF NOT EXISTS (SELECT [Id] FROM [dbo].[DataFeeds] WHERE [Id] = @Deal_Equity_FeedID)
+     INSERT INTO [dbo].[DataFeeds] (
+										[Id], 
+										[Name], 
+										[Description], 
+										[Enabled], 
+										[FeedType], 
+										[SourceGroupsId], 
+										[ScheduleId], 
+										[FolderLimit], 
+										[FolderPath],
+										RetryCheckInterval,
+										RetryAttemptLimit
+--										,[Data]
+									)
+						VALUES		(
+										@Deal_Equity_FeedID, 
+										'Deal_Equity', 
+										'Equity feed for Deal', 
+										0, 
+										'Incremental', 
+										@SourceGroup_Deal_Equity, 
+										@Deal_Equity_Schedule_ID, 
+										15, 
+										'Deal\DealEquity\',
+										0,
+										0
+--										,'<Data><MinimizeLogs>true</MinimizeLogs></Data>'
+									)
+ELSE
+		UPDATE [dbo].[DataFeeds] 
+		SET	[Name] = 'Deal_Equity', 
+				[Description] = 'Equity feed for Deal', 
+				[Enabled] = 0, 
+				[FeedType] = 'Incremental', 
+				[SourceGroupsId] = @SourceGroup_Deal_Equity, 
+				[ScheduleId] = @Deal_Equity_Schedule_ID, 
+				[FolderLimit] = 15, 
+				[FolderPath] = 'Deal\DealEquity\',
+				[RetryCheckInterval] = 0,
+				[RetryAttemptLimit] = 0
+--				,[Data] = '<Data><MinimizeLogs>true</MinimizeLogs></Data>'
+		WHERE	[Id] = @Deal_Equity_FeedID
+
 
 -- DSTFeed Qtrly
 IF NOT EXISTS (SELECT [FeedId] FROM [dbo].[DSTFeed] WHERE [FeedId] = @Deal_Qtrly_FeedID)
@@ -254,6 +360,13 @@ IF NOT EXISTS (SELECT [FeedId] FROM [dbo].[DSTFeed] WHERE [FeedId] = @Deal_Daily
 		VALUES(@Deal_Daily_FeedID, 'US', 'Eastern Standard Time')
 ELSE
      UPDATE [dbo].[DSTFeed] SET [TimeZone] = 'Eastern Standard Time' WHERE [FeedId] = @Deal_Daily_FeedID
+     
+-- DSTFeed Equity
+IF NOT EXISTS (SELECT [FeedId] FROM [dbo].[DSTFeed] WHERE [FeedId] = @Deal_Equity_FeedID)
+	INSERT INTO [DSTFeed]([FeedId], [Region], [TimeZone]) 
+		VALUES(@Deal_Equity_FeedID, 'US', 'Eastern Standard Time')
+ELSE
+     UPDATE [dbo].[DSTFeed] SET [TimeZone] = 'Eastern Standard Time' WHERE [FeedId] = @Deal_Equity_FeedID
 
 
 /*		Data Source Feed		*/
@@ -264,14 +377,28 @@ INSERT INTO [DataSourceFeed]([DataSourceId], [FeedId])
 
 INSERT INTO [DataSourceFeed]([DataSourceId], [FeedId]) 
 	VALUES(@Deal_DataSource_ID, @Deal_Daily_FeedID);
+	
+INSERT INTO [DataSourceFeed]([DataSourceId], [FeedId]) 
+	VALUES(@Deal_DataSource_ID, @Deal_Equity_FeedID);
 
 
 /*		Feed Dependency		*/
 
--- Set IntraFeedInterdayWithBuild  (Same feed on Different days) 
+---- Set IntraFeedInterdayWithBuild  (Same feed on Different days) 
+--Delete from [FeedDependencies] where [FeedId] = @Deal_Daily_FeedID
+--INSERT INTO [FeedDependencies]([FeedId], [DependentFeedId], [StartingPhase], [EndingPhase], [DependencyType], [Options], [Data]) 
+--	VALUES(@Deal_Daily_FeedID, @Deal_Daily_FeedID, 'DataGatherer', 'UpdateDriver', 6, 0, '<Data><InterdayBuild InterdayDependencyType="PreviousDay" BuildNumberDependencyType="Fixed" FixedBuildNumber="0"></InterdayBuild></Data>');
+	
+-- Set InterFeedIntraday (2 different feeds targeting the same day) 
+Delete from [FeedDependencies] where [FeedId] = @Deal_Equity_FeedID
+INSERT INTO [FeedDependencies]([FeedId], [DependentFeedId], [StartingPhase], [EndingPhase], [DependencyType], [Options], [Data]) 
+VALUES(@Deal_Equity_FeedID, @Deal_Daily_FeedID, 'DataGatherer', 'UpdateDriver', 1, 0, NULL);
+
+-- Set InterFeedInterday (2 different feeds targeting the different day) 
 Delete from [FeedDependencies] where [FeedId] = @Deal_Daily_FeedID
 INSERT INTO [FeedDependencies]([FeedId], [DependentFeedId], [StartingPhase], [EndingPhase], [DependencyType], [Options], [Data]) 
-	VALUES(@Deal_Daily_FeedID, @Deal_Daily_FeedID, 'DataGatherer', 'UpdateDriver', 6, 0, '<Data><InterdayBuild InterdayDependencyType="PreviousDay" BuildNumberDependencyType="Fixed" FixedBuildNumber="0"></InterdayBuild></Data>');
+VALUES(@Deal_Daily_FeedID, @Deal_Equity_FeedID, 'DataGatherer', 'UpdateDriver', 3, 0, 
+'<Data> <Interday InterdayDependencyType="PreviousDay"/> </Data>');
 
 
 /* ---------------------------
@@ -290,6 +417,13 @@ SET @DealPkgETLDaily  = NEWID()
 
 INSERT INTO [PackageInfo]([Id], [Name], [Description], [Location], [Type]) 
 	VALUES(@DealPkgETLDaily, 'ETL.Deal.dtsx', 'ETL package for Deal for Daily', '$(InstallationPath)SSISPackages\', 'ETL');
+	
+	
+DECLARE @DealPkgETLEquity UNIQUEIDENTIFIER
+SET @DealPkgETLEquity  = NEWID()
+
+INSERT INTO [PackageInfo]([Id], [Name], [Description], [Location], [Type]) 
+	VALUES(@DealPkgETLEquity, 'ETL_DL_Equity_Incr.dtsx', 'ETL package for Deal for Equity', '$(InstallationPath)SSISPackages\', 'ETL');
 
 
 -- Update Package
@@ -305,6 +439,12 @@ SET @DealPkgIncrUpd  = NEWID()
 
 INSERT INTO [PackageInfo]([Id], [Name], [Description], [Location], [Type]) 
 	VALUES(@DealPkgIncrUpd, 'UPDATE.Deal.dtsx', 'Update package for Deal', '$(InstallationPath)SSISPackages\', 'UPD');
+	
+DECLARE @DealPkgEquityUpd UNIQUEIDENTIFIER
+SET @DealPkgEquityUpd  = NEWID()
+
+INSERT INTO [PackageInfo]([Id], [Name], [Description], [Location], [Type]) 
+	VALUES(@DealPkgEquityUpd, 'Update_DL_Equity_Incr.dtsx', 'Update package for Deal', '$(InstallationPath)SSISPackages\', 'UPD');
 
 
 -- Variable Info
@@ -476,6 +616,43 @@ INSERT INTO [PackageVariables]([PackageId], [VariableId])
 
 INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
 	VALUES(@DealPkgIncrUpd,@DealIsIncrLoad);
+	
+-- For update package mapping for Equity
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealVarAliasDataSourceName);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealVarSequenceNumber);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealVarUpdateDatabase);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealVarexternal_UpdateDate);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealVarexternal_PackageBaseFolder);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealVarSQLPassword);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealVarEngineThreads);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealVarMasterDataBase);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealVarSQLUserName);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealVarChangeDataBase);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealVarInputBaseFolder);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgEquityUpd,@DealIsIncrLoad);-----check-----
 
 -- For ETL package mapping fro Qtrly
 INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
@@ -557,6 +734,46 @@ INSERT INTO [PackageVariables]([PackageId], [VariableId])
 INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
 	VALUES(@DealPkgETLDaily,@DealIsIncrLoad);
 
+-- For ETL package mapping for Equity
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarAliasDataSourceName);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarSequenceNumber);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarUpdateDatabase);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarexternal_UpdateDate);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarexternal_PackageBaseFolder);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarSQLPassword);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarIntialCatalog);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarEngineThreads);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarMasterDataBase);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarSQLUserName);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarChangeDataBase);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealVarInputBaseFolder);
+
+INSERT INTO [PackageVariables]([PackageId], [VariableId]) 
+	VALUES(@DealPkgETLEquity,@DealIsIncrLoad);  -------Check------------------
+	
 --Finished Package Mappings
 /*	FeedPackages	*/
 INSERT INTO [FeedPackages]([FeedId], [PackageId]) 
@@ -564,6 +781,9 @@ INSERT INTO [FeedPackages]([FeedId], [PackageId])
 
 INSERT INTO [FeedPackages]([FeedId], [PackageId]) 
 	VALUES(@Deal_Daily_FeedID, @DealPkgETLDaily);
+	
+INSERT INTO [FeedPackages]([FeedId], [PackageId]) 
+	VALUES(@Deal_Equity_FeedID, @DealPkgETLEquity);
 
 INSERT INTO [FeedPackages]([FeedId], [PackageId]) 
 	VALUES(@Deal_Qtrly_FeedID, @DealPkgQtrlyUpd);
@@ -571,13 +791,22 @@ INSERT INTO [FeedPackages]([FeedId], [PackageId])
 INSERT INTO [FeedPackages]([FeedId], [PackageId]) 
 	VALUES(@Deal_Daily_FeedID, @DealPkgIncrUpd);
 
+INSERT INTO [FeedPackages]([FeedId], [PackageId]) 
+	VALUES(@Deal_Equity_FeedID, @DealPkgEquityUpd);
+
 
 /*		FeedEmail NotifierInfo	*/
 DECLARE @EmailNotifierInfoId_1 VARCHAR(32)
 DECLARE @EmailNotifierInfoId_2 VARCHAR(32)
 
+
+
+
 SET @EmailNotifierInfoId_1 = 'Deal_EMAIL_1'
 SET @EmailNotifierInfoId_2 = 'Deal_EMAIL_2'
+
+
+
 
 INSERT INTO [EmailNotifierInfo]([Id], [Description], [Data]) 
 	VALUES(@EmailNotifierInfoId_1, 'Deal mailer group', '<EmailNotifierFeedSpcData Subject="Mailer task" Body="Mail body" Priority="Normal">  <Recipients>  <string>kallol.kundu@thomsonreuters.com</string>  <string>parul.sharma@thomsonreuters.com</string>  </Recipients></EmailNotifierFeedSpcData>');
@@ -586,18 +815,25 @@ INSERT INTO [EmailNotifierInfo]([Id], [Description], [Data])
 	VALUES(@EmailNotifierInfoId_2, 'Deal mailer group', '<EmailNotifierFeedSpcData Subject="Mailer task" Body="Mail body" Priority="Normal">  <Recipients> <string>kallol.kundu@thomsonreuters.com</string>  <string>parul.sharma@thomsonreuters.com</string>  </Recipients></EmailNotifierFeedSpcData>');
 
 
+
 /*	FeedEmail notifier  */
 INSERT INTO [FeedEmailNotifier]([EmailNotifierInfoId], [FeedId], [Phase], [Severity], [IsActive]) 
 	VALUES(@EmailNotifierInfoId_1, @Deal_Qtrly_FeedID, 'DataGatherer | ETLDriver | UpdateDriver | PostProcessDriver', 'Error | Warning', 1);
 
 INSERT INTO [FeedEmailNotifier]([EmailNotifierInfoId], [FeedId], [Phase], [Severity], [IsActive]) 
 	VALUES(@EmailNotifierInfoId_1, @Deal_Daily_FeedID, 'DataGatherer | ETLDriver | UpdateDriver | PostProcessDriver', 'Error | Warning', 1);
+	
+INSERT INTO [FeedEmailNotifier]([EmailNotifierInfoId], [FeedId], [Phase], [Severity], [IsActive]) 
+	VALUES(@EmailNotifierInfoId_1, @Deal_Equity_FeedID, 'DataGatherer | ETLDriver | UpdateDriver | PostProcessDriver', 'Error | Warning', 1);
 
 INSERT INTO [FeedEmailNotifier]([EmailNotifierInfoId], [FeedId], [Phase], [Severity], [IsActive]) 
 	VALUES(@EmailNotifierInfoId_2, @Deal_Qtrly_FeedID, 'DataGatherer | PostProcessDriver', 'Information', 1);
 
 INSERT INTO [FeedEmailNotifier]([EmailNotifierInfoId], [FeedId], [Phase], [Severity], [IsActive]) 
 	VALUES(@EmailNotifierInfoId_2, @Deal_Daily_FeedID, 'DataGatherer | PostProcessDriver', 'Information', 1);
+	
+INSERT INTO [FeedEmailNotifier]([EmailNotifierInfoId], [FeedId], [Phase], [Severity], [IsActive]) 
+	VALUES(@EmailNotifierInfoId_2, @Deal_Equity_FeedID, 'DataGatherer | PostProcessDriver', 'Information', 1);
 
 
 /*------------------------------
@@ -986,7 +1222,77 @@ INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
 
 INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
      VALUES(@DDViewID,'SEQ_NO')
+          
+     
+INSERT INTO [DataDeliveryView]([DataSourceId], [DatabaseId], [Description], [DatabaseViewName], [MQACode], [TargetTableName]) 
+	VALUES(@Deal_DataSource_ID, @DataBaseInfoId, 'View for DLEqInstrInfo', 'V_DLEqInstrInfo', 13735, 'DLEqInstrInfo');
 
+SET @DDViewID = SCOPE_IDENTITY()
+
+INSERT INTO [ProfileViewMapping]([DataDeliveryProfileId], [DataDeliveryViewId], [ApplyOrder]) 
+	VALUES(@DataDeliveryProfileId, @DDViewID , 22);
+
+INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
+     VALUES(@DDViewID,'TRANSACTIONID')
+     
+     
+INSERT INTO [DataDeliveryView]([DataSourceId], [DatabaseId], [Description], [DatabaseViewName], [MQACode], [TargetTableName]) 
+	VALUES(@Deal_DataSource_ID, @DataBaseInfoId, 'View for DLEqTransInfo', 'V_DLEqTransInfo', 13736, 'DLEqTransInfo');
+
+SET @DDViewID = SCOPE_IDENTITY()
+
+INSERT INTO [ProfileViewMapping]([DataDeliveryProfileId], [DataDeliveryViewId], [ApplyOrder]) 
+	VALUES(@DataDeliveryProfileId, @DDViewID , 23);
+
+INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
+     VALUES(@DDViewID,'TRansactionId')
+
+INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
+     VALUES(@DDViewID,'SeqNum')
+     
+INSERT INTO [DataDeliveryView]([DataSourceId], [DatabaseId], [Description], [DatabaseViewName], [MQACode], [TargetTableName]) 
+	VALUES(@Deal_DataSource_ID, @DataBaseInfoId, 'View for DLEqTransdata', 'V_DLEqTransdata', 13737, 'DLEqTransdata');
+
+SET @DDViewID = SCOPE_IDENTITY()
+
+INSERT INTO [ProfileViewMapping]([DataDeliveryProfileId], [DataDeliveryViewId], [ApplyOrder]) 
+	VALUES(@DataDeliveryProfileId, @DDViewID , 24);
+
+INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
+     VALUES(@DDViewID,'TRansactionID')
+
+INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
+     VALUES(@DDViewID,'SeqNum')
+
+INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
+     VALUES(@DDViewID,'Item')
+ 
+     
+INSERT INTO [DataDeliveryView]([DataSourceId], [DatabaseId], [Description], [DatabaseViewName], [MQACode], [TargetTableName]) 
+	VALUES(@Deal_DataSource_ID, @DataBaseInfoId, 'View for DLEqItem', 'V_DLEqItem', 13738, 'DLEqItem');
+
+SET @DDViewID = SCOPE_IDENTITY()
+
+INSERT INTO [ProfileViewMapping]([DataDeliveryProfileId], [DataDeliveryViewId], [ApplyOrder]) 
+	VALUES(@DataDeliveryProfileId, @DDViewID , 25);
+
+INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
+     VALUES(@DDViewID,'Item')
+
+
+INSERT INTO [DataDeliveryView]([DataSourceId], [DatabaseId], [Description], [DatabaseViewName], [MQACode], [TargetTableName]) 
+	VALUES(@Deal_DataSource_ID, @DataBaseInfoId, 'View for DLPermInfo', 'V_DLPermInfo', 13740, 'DLPermInfo');
+
+SET @DDViewID = SCOPE_IDENTITY()
+
+INSERT INTO [ProfileViewMapping]([DataDeliveryProfileId], [DataDeliveryViewId], [ApplyOrder]) 
+	VALUES(@DataDeliveryProfileId, @DDViewID , 26);
+
+INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
+     VALUES(@DDViewID,'TRansactionID')
+     
+INSERT INTO [ViewKeyColumns]([DataDeliveryViewId],[PrimaryKeyColumn])
+     VALUES(@DDViewID,'SeqNum')
 
 --INSERT INTO [DataDeliveryView]([DataSourceId], [DatabaseId], [Description], [DatabaseViewName], [MQACode], [TargetTableName]) 
 --	VALUES(@Deal_DataSource_ID, @DataBaseInfoId, 'View for DLLicFlagCode', 'V_DLLicFlagCode', 13725, 'DLLicFlagCode');
@@ -1018,6 +1324,9 @@ SET @PostProcessingTaskInfoId = 'DataDeliveryTask'
 
 		INSERT INTO [FeedPostProcessingTasks](PostProcessingObjectId,[FeedId], [Data], [Enabled]) 
 			VALUES(@PostProcessingTaskInfoId,@Deal_Daily_FeedID, '', 1);
+		
+		INSERT INTO [FeedPostProcessingTasks](PostProcessingObjectId,[FeedId], [Data], [Enabled]) 
+			VALUES(@PostProcessingTaskInfoId,@Deal_Equity_FeedID, '', 1);
 
 SET @PostProcessingTaskInfoId = 'MessageDeliveryTask'
 
@@ -1026,6 +1335,9 @@ SET @PostProcessingTaskInfoId = 'MessageDeliveryTask'
 
 		INSERT INTO [FeedPostProcessingTasks](PostProcessingObjectId,[FeedId], [Data], [Enabled]) 
 			VALUES(@PostProcessingTaskInfoId,@Deal_Daily_FeedID, '', 1);
+		
+		INSERT INTO [FeedPostProcessingTasks](PostProcessingObjectId,[FeedId], [Data], [Enabled]) 
+			VALUES(@PostProcessingTaskInfoId,@Deal_Equity_FeedID, '', 1);
 		
 
 -- Taking back the retained configuration settings
@@ -1058,3 +1370,4 @@ ELSE
  --DataSourceGroupMapping
  INSERT INTO DataSourceGroupMapping VALUES(@Deal_DataSource_ID,@Deal_DataSource_ID)
      
+
