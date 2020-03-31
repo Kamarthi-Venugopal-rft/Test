@@ -89,9 +89,9 @@ INSERT INTO [Catalogs]( [Description])
 
 /*       Catalog Files        */
 SET @Catalog_Deal_Equity = scope_identity()
----MA_TRDW_20200321
+
 INSERT INTO [CatalogFiles]([CatalogId], [IsIncluded], [SourceFileName], [ZipToFileName], [SinkFileName], [MinSize], [MaxSize], [MiscData], TypeOfCheck) 
-	VALUES(@Catalog_Deal_Equity, 3, 'MA_TRDW_(yyyymmdd).zip', 'MA_TRDW_(yyyymmdd).zip', NULL, NULL, NULL, NULL, NULL);
+	VALUES(@Catalog_Deal_Equity, 3, 'Equity_TRDW_(yyyymmdd).zip', 'Equity_TRDW_(yyyymmdd).zip', NULL, NULL, NULL, NULL, NULL);
 
 /*		ConnectionInfo     */
 INSERT INTO ConnectionInfo (Description, [Server], Port, [Login], [password], ServerPath)
@@ -398,7 +398,7 @@ VALUES(@Deal_Equity_FeedID, @Deal_Daily_FeedID, 'DataGatherer', 'UpdateDriver', 
 Delete from [FeedDependencies] where [FeedId] = @Deal_Daily_FeedID
 INSERT INTO [FeedDependencies]([FeedId], [DependentFeedId], [StartingPhase], [EndingPhase], [DependencyType], [Options], [Data]) 
 VALUES(@Deal_Daily_FeedID, @Deal_Equity_FeedID, 'DataGatherer', 'UpdateDriver', 3, 0, 
-'<Data> <Interday InterdayDependencyType="PreviousDay"/> </Data>');
+'<Data><Interday InterdayDependencyType="PreviousDay"/></Data>');
 
 
 /* ---------------------------
