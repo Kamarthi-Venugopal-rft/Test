@@ -744,7 +744,7 @@ CREATE TABLE [dbo].[DLEqTransInfo](
 	[IssuerMacroIndCode] [smallint] NULL,
 	[LockupProvCode] [tinyint] NULL,
 	[IPOListExchCode] [smallint] NULL,
-	[TotSharesFiled] [int] NULL,
+	[TotSharesFiled] [bigint] NULL,
 	[TotPriSharesPct] [float] NULL,
 	[LicFlag] [tinyint] NULL,
 CONSTRAINT [IX_DLEqTransInfo] PRIMARY KEY CLUSTERED 
@@ -808,7 +808,7 @@ CREATE TABLE [arc].[DLEqTransInfo](
 	[IssuerMacroIndCode] [smallint] NULL,
 	[LockupProvCode] [tinyint] NULL,
 	[IPOListExchCode] [smallint] NULL,
-	[TotSharesFiled] [int] NULL,
+	[TotSharesFiled] [bigint] NULL,
 	[TotPriSharesPct] [float] NULL,
 	[LicFlag] [tinyint] NULL,
  CONSTRAINT [IX_DLEqTransInfo] PRIMARY KEY NONCLUSTERED 
