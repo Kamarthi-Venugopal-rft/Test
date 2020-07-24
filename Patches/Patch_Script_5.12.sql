@@ -1010,6 +1010,9 @@ GO
 USE [Deal_Update]
 GO
 /****** Object:  Table [dbo].[DlCode]    Script Date: 04/22/2020 21:13:19 ******/
+INSERT [dbo].[DlCode] ([Type_], [Code], [Desc_]) VALUES (15, 16, N'DEALS Equity Global')
+INSERT [dbo].[DlCode] ([Type_], [Code], [Desc_]) VALUES (15, 32, N'DEALS IPO US')
+INSERT [dbo].[DlCode] ([Type_], [Code], [Desc_]) VALUES (15, 64, N'DEALS IPO Global')
 INSERT [dbo].[DlCode] ([Type_], [Code], [Desc_]) VALUES (25, 709, N'ORD-PARTNERS')
 INSERT [dbo].[DlCode] ([Type_], [Code], [Desc_]) VALUES (25, 710, N'PANKAJ-KHANNA')
 INSERT [dbo].[DlCode] ([Type_], [Code], [Desc_]) VALUES (25, 711, N'PARITZ-CO')
