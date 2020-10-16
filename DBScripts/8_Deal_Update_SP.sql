@@ -628,7 +628,7 @@ BEGIN
 			(
 				Deal_No BigInt,
 				PrimRoleId Int,
-				AdvCusip Varchar(10) Collate SQL_Latin1_General_CP1_CS_AS,
+				AdvCusip Varchar(10),--------- Collate SQL_Latin1_General_CP1_CS_AS,
 				FeesCode Int,
 				Value_ Float,
 				AdvOrgCIDGen BigInt,
@@ -640,16 +640,16 @@ BEGIN
 			Create Table #TmpCIDGen 
 			( 
 				deal_no bigint, 
-				advcusip varchar(10) Collate SQL_Latin1_General_CP1_CS_AS, 
+				advcusip varchar(10),--- Collate SQL_Latin1_General_CP1_CS_AS, 
 				dateann int, 
 				advcidgen bigint, 
 				gendate int
 			)
-
+		
 			Declare @FinAdvInfo Table
 			(
 				FinAdvId Int,	
-				CUSIP varchar(10) Collate SQL_Latin1_General_CP1_CS_AS				
+				CUSIP varchar(10) 
 			) 
 
 			Truncate Table [dbo].[DLAdvisorsFee]
@@ -974,7 +974,7 @@ BEGIN
 				Seq_No Int,
 				CIDGen BigInt,
 				PrimRoleId Int,
-				AdvCusip Varchar(10) Collate SQL_Latin1_General_CP1_CS_AS,
+				AdvCusip Varchar(10) Collate SQL_Latin1_General_CP1_CI_AS,
 				AdvRoleId Int,
 				AdvSubRole Int,
 				AdvCIDGen BigInt,
@@ -986,7 +986,7 @@ BEGIN
 			Create Table #TmpCIDGen 
 			( 
 				deal_no bigint, 
-				advcusip varchar(10) Collate SQL_Latin1_General_CP1_CS_AS, 
+				advcusip varchar(10) Collate SQL_Latin1_General_CP1_CI_AS, 
 				dateann int, 
 				advcidgen bigint, 
 				gendate int
@@ -995,19 +995,19 @@ BEGIN
 			Declare @FinAdvInfo Table
 			(
 				FinAdvId Int,	
-				CUSIP varchar(10) Collate SQL_Latin1_General_CP1_CS_AS				
+				CUSIP varchar(10) Collate SQL_Latin1_General_CP1_CI_AS				
 			) 
 			
 			Declare @LegAdvInfo Table
 			(
 				Lawyer varchar(20),	
-				CUSIP varchar(10) Collate SQL_Latin1_General_CP1_CS_AS				
+				CUSIP varchar(10) Collate SQL_Latin1_General_CP1_CI_AS				
 			) 
 
 			Declare @AcctInfo Table
 			(
 				Accountant varchar(20),	
-				CUSIP varchar(10) Collate SQL_Latin1_General_CP1_CS_AS				
+				CUSIP varchar(10) Collate SQL_Latin1_General_CP1_CI_AS				
 			) 
 			
 			Truncate Table [dbo].[DLAdvisor]
