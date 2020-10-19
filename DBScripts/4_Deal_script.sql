@@ -489,7 +489,7 @@ CREATE TABLE [dbo].[DLLegAdvInfo](
 	[Lawyer] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[LwyrLongName] [varchar](60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[LwyrParent] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-	[Cusip] [varchar](10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[Cusip] [varchar](10) COLLATE SQL_Latin1_General_CP1_CS_AS NULL,
  CONSTRAINT [pk_DLLegAdvInfo] PRIMARY KEY NONCLUSTERED 
 (
 	[LegAdvId] ASC
@@ -617,7 +617,7 @@ CREATE TABLE [dbo].[DLFinAdvInfo](
 	[FinAdvId] [int] NOT NULL,
 	[MgrCode] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[MgrLongName] [varchar](60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-	[Cusip] [varchar](10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[Cusip] [varchar](10) COLLATE SQL_Latin1_General_CP1_CS_AS NULL,
 	[NatCode] [char](2) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[StateCode] [char](2) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[MgrParentCode] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
@@ -830,7 +830,7 @@ CREATE TABLE [dbo].[DLAcctInfo](
 	[Accountant] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[AcctLongName] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[AcctParent] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-	[Cusip] [varchar](10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[Cusip] [varchar](10) COLLATE SQL_Latin1_General_CP1_CS_AS NULL,
  CONSTRAINT [pk_DLAccInfo] PRIMARY KEY NONCLUSTERED 
 (
 	[AcctId] ASC
