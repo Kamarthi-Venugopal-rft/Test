@@ -45,12 +45,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5A3731C84CCC451A812761463B2E6EED"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5EBE5EDBCB1B4256A46CDABDF84CC0F7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -69,19 +63,25 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7939EF626111401D820CDA6F36D1D5F0"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_817FEDED04C6444291AF98E9523605C4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_83BA3CC0738549DD99EEE60D383C7213"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8F5A6D0341414FA28EEAE278FA4242D1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9D3EDE7AB3E74B04BF9E3AE51683F525"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -387,26 +387,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5A3731C84CCC451A812761463B2E6EED"
-            {
-            "SourcePath" = "8:E:\\Gayathiri\\Deal\\4_Deal_script.sql"
-            "TargetName" = "8:4_Deal_script.sql"
-            "Tag" = "8:"
-            "Folder" = "8:_B73761C8F0F34497AFB065817F8306BF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5EBE5EDBCB1B4256A46CDABDF84CC0F7"
             {
             "SourcePath" = "8:F:\\Refinitiv\\DataIngestionSystem\\DataSources\\Deals\\SSISPackages\\Update_DL_Equity_Incr.dtsx"
@@ -467,26 +447,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7939EF626111401D820CDA6F36D1D5F0"
-            {
-            "SourcePath" = "8:E:\\Gayathiri\\Deal\\8_Deal_Update_SP.sql"
-            "TargetName" = "8:8_Deal_Update_SP.sql"
-            "Tag" = "8:"
-            "Folder" = "8:_B73761C8F0F34497AFB065817F8306BF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_817FEDED04C6444291AF98E9523605C4"
             {
             "SourcePath" = "8:E:\\Gayathiri\\Deal\\Deal-Ingestion-Deal_5.12-30dbf46d3f9566c58b707735448b3b8909567811\\MetaDBScripts\\DealInstall.sql"
@@ -507,10 +467,50 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_83BA3CC0738549DD99EEE60D383C7213"
+            {
+            "SourcePath" = "8:E:\\Gayathiri\\4_Deal_script.sql"
+            "TargetName" = "8:4_Deal_script.sql"
+            "Tag" = "8:"
+            "Folder" = "8:_B73761C8F0F34497AFB065817F8306BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F5A6D0341414FA28EEAE278FA4242D1"
             {
             "SourcePath" = "8:E:\\Gayathiri\\Deal\\5_Deal_Change_script.sql"
             "TargetName" = "8:5_Deal_Change_script.sql"
+            "Tag" = "8:"
+            "Folder" = "8:_B73761C8F0F34497AFB065817F8306BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9D3EDE7AB3E74B04BF9E3AE51683F525"
+            {
+            "SourcePath" = "8:E:\\Gayathiri\\8_Deal_Update_SP.sql"
+            "TargetName" = "8:8_Deal_Update_SP.sql"
             "Tag" = "8:"
             "Folder" = "8:_B73761C8F0F34497AFB065817F8306BF"
             "Condition" = "8:"
@@ -747,7 +747,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DIS-Deals 6.0.0"
         "ProductCode" = "8:{5BC23681-E165-457F-889E-80A8C4525EC6}"
-        "PackageCode" = "8:{720C9CC1-DA37-411B-8848-9412689A2221}"
+        "PackageCode" = "8:{27A92946-4A08-4EC5-8E58-C5AEF898920C}"
         "UpgradeCode" = "8:{A22E0D58-D575-4A63-911F-545B7AD4CB05}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
