@@ -628,7 +628,7 @@ BEGIN
 			(
 				Deal_No BigInt,
 				PrimRoleId Int,
-				AdvCusip Varchar(10) Collate SQL_Latin1_General_CP1_CI_AS,
+				AdvCusip Varchar(10) Collate SQL_Latin1_General_CP1_CS_AS,
 				FeesCode Int,
 				Value_ Float,
 				AdvOrgCIDGen BigInt,
@@ -640,7 +640,7 @@ BEGIN
 			Create Table #TmpCIDGen 
 			( 
 				deal_no bigint, 
-				advcusip varchar(10) Collate SQL_Latin1_General_CP1_CI_AS, 
+				advcusip varchar(10) Collate SQL_Latin1_General_CP1_CS_AS, 
 				dateann int, 
 				advcidgen bigint, 
 				gendate int
@@ -649,7 +649,7 @@ BEGIN
 			Declare @FinAdvInfo Table
 			(
 				FinAdvId Int,	
-				CUSIP varchar(10) Collate SQL_Latin1_General_CP1_CI_AS				
+				CUSIP varchar(10) Collate SQL_Latin1_General_CP1_CS_AS				
 			) 
 
 			Truncate Table [dbo].[DLAdvisorsFee]
